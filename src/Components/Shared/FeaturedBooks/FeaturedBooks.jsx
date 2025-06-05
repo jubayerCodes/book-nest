@@ -16,7 +16,9 @@ const FeaturedBooks = () => {
                         View All
                     </button>
                 </div>
-                <div className='featured-books-list grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-10 mt-8'>
+                <div className='featured-books-list grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-8 gap-10 mt-8'>
+                    <BookItem />
+                    <BookItem />
                     <BookItem />
                     <BookItem />
                     <BookItem />

@@ -1,5 +1,6 @@
 import Hero from '@/Components/Home/Hero/Hero';
 import FeaturedBooks from '@/Components/Shared/FeaturedBooks/FeaturedBooks';
+import FeaturedEBooks from '@/Components/Shared/FeaturedEBooks/FeaturedEBooks';
 import React from 'react';
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
         <>
             <Hero />
             <FeaturedBooks />
+            <FeaturedEBooks />
         </>
     );
 };
