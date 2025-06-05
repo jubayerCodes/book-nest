@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import '@smastrom/react-rating/style.css'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
