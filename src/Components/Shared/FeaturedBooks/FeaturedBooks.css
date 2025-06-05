@@ -1,0 +1,7 @@
+.featured-books-header {
+    @apply flex items-end justify-between;
+}
+
+/* .featured-books .book-type {
+    @apply text-white bg-[var(--primary-color)] px-2 py-1 rounded-md text-xs font-semibold;
+} */
