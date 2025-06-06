@@ -7,8 +7,12 @@ const BookItem = () => {
     return (
         <>
             <div className='book-item'>
-                <div className="book-cover relative">
-                    <img src={bookImg.src} alt="Book Cover" className='book-img' />
+                <div className='relative'>
+                    <Link href={'#'}>
+                        <div className="book-cover relative">
+                            <img src={bookImg.src} alt="Book Cover" className='book-img' />
+                        </div>
+                    </Link>
                     <button className="cart-btn">Add to Cart</button>
                 </div>
                 <div className="book-info">
