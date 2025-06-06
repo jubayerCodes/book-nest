@@ -1,16 +1,16 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Lora } from "next/font/google";
 import "./globals.css";
 import '@smastrom/react-rating/style.css'
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const lora = Lora({
+  variable: "--font-primary",
   subsets: ["latin"],
-});
+})
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-secondary",
   subsets: ["latin"],
-});
+})
 
 export const metadata = {
   title: "BookNest - Books for Eyes and Ears.",
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${lora.variable} ${inter.variable} antialiased`}
       >
         {children}
       </body>

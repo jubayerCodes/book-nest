@@ -38,9 +38,9 @@ const FeaturedEBooks = () => {
                         {swiperReady && (
                             <Swiper
                                 modules={[Navigation, Autoplay]}
-                                slidesPerView={8}
-                                slidesPerGroup={8}
-                                spaceBetween={40}
+                                slidesPerView={6}
+                                slidesPerGroup={6}
+                                spaceBetween={30}
                                 autoplay={{ pauseOnMouseEnter: true }}
                                 navigation={{
                                     prevEl: prevRef.current,
