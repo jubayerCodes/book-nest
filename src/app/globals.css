@@ -6,15 +6,21 @@
   --background-color: #f5f5f5;
   --text-color: #666666;
   --shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  --border-color: #bebebe;
+  --border-color2: #e7e7e7;
 }
 
 body {
   @apply bg-[var(--background-color)];
 }
 
+a {
+  font-family: var(--font-primary);
+}
 
 p {
-  font-family: var(--font-secondary)
+  font-family: var(--font-secondary);
+  @apply text-[var(--text-color)]
 }
 
 h2 {
@@ -27,6 +33,10 @@ h3 {
   font-family: var(--font-primary);
 }
 
+h5 {
+  font-family: var(--font-secondary);
+}
+
 
 .section {
   @apply my-5;
@@ -37,11 +47,11 @@ h3 {
 }
 
 .btn {
-  @apply bg-[var(--primary-color)] text-white px-4 py-2 rounded hover:bg-[var(--primary-color)] hover:text-white transition
+  @apply bg-[var(--primary-color)] text-white px-4 py-2 rounded-[2px] hover:bg-black hover:text-white transition font-semibold cursor-pointer
 }
 
 .btn-outline {
-  @apply bg-transparent text-[var(--primary-color)] text-base font-semibold cursor-pointer transition capitalize px-4 py-2 rounded border border-[var(--primary-color)] hover:bg-[var(--primary-color)] hover:text-white;
+  @apply bg-transparent text-[var(--primary-color)] text-base font-semibold cursor-pointer transition capitalize px-4 py-2 rounded-[2px] border border-[var(--primary-color)] hover:bg-[var(--primary-color)] hover:text-white;
 }
 
 
@@ -82,11 +92,11 @@ h3 {
   line-height: 1.5em;
 }
 
-.book-item .price {
+.price {
   @apply text-[var(--heading-color)] text-base font-semibold;
 }
 
-.book-item .discount {
+.discount {
   @apply text-[var(--text-color)] text-sm line-through;
 }
 
@@ -119,3 +129,62 @@ h3 {
 
 
 /* Book Item End */
+
+
+
+/* Book Details Start */
+
+.book-details .book-title {
+  @apply text-2xl text-[var(--heading-color)]
+}
+
+.book-details .summary {
+  @apply my-4 border-y border-[var(--border-color)] py-4;
+}
+
+.book-details .summary p {
+  @apply text-sm;
+  font-family: var(--font-secondary);
+}
+
+.book-details .book-category {
+  @apply text-base mt-1
+}
+
+.book-details .book-author a {
+  @apply text-sm
+}
+
+.book-details .about {
+  @apply pb-6 border-b border-[var(--border-color)];
+}
+
+.book-details .about .about-item {
+  @apply flex items-center gap-2 border-r border-[var(--border-color)] pr-6;
+}
+
+.book-details .about .about-item:last-child {
+  @apply border-r-0 pr-0;
+}
+
+.book-details .about .about-items {
+  @apply flex items-center gap-6;
+}
+
+.book-details .about .about-item img {
+  @apply w-[50px]
+}
+
+.book-details .about .about-item div {
+  @apply flex flex-col gap-1
+}
+
+.book-details .about .about-item .about-info {
+  @apply text-2xl font-semibold text-[var(--heading-color)];
+}
+
+.book-details .about .about-item .about-title {
+  @apply text-sm text-[var(--text-color)];
+}
+
+/* Book Details End */

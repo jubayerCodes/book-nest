@@ -26,7 +26,7 @@ const FeaturedBooks = () => {
             <div className='my-container featured-books-container bg-white py-6 px-12 rounded relative'>
                 <div className='featured-books-header flex justify-between items-end'>
                     <div>
-                        <span className='book-type bg-[var(--primary-color)] px-2 py-0.5 text-white text-sm rounded'>Books</span>
+                        <span className='book-type bg-[var(--primary-color)] px-2 py-0.5 text-white text-sm rounded-[2px]'>Books</span>
                         <h2 className='mt-1'>Popular Books</h2>
                     </div>
                     <button className='btn-outline'>
