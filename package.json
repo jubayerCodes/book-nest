@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "npm install --platform=linux --arch=x64 sharp && next build"
+    "vercel-build": "next build"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
