@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AppSidebar } from "@/Components/app-sidebar"
 import { SiteHeader } from "@/Components/site-header"
 import {
@@ -14,7 +14,11 @@ const DashboardLayout = ({ children }) => {
     const { user, loading } = useSelector(state => state.auth)
     const router = useRouter()
 
-    if (!user && !loading) {
+    if (loading) {
+        return <div>Loading...</div>
+    }
+
+    if (!user) {
         return router.push("/login")
     }
 
