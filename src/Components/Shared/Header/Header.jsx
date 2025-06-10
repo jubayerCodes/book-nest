@@ -6,15 +6,27 @@ import './Header.css'
 import Link from 'next/link';
 import { Popover, PopoverContent, PopoverTrigger } from '@/Components/ui/popover';
 import { usePathname } from 'next/navigation';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOut } from '@/lib/redux/features/auth/authSlice';
+import { toast } from 'sonner';
 
 const Header = () => {
 
     const user = useSelector(state => state.auth.user)
+    const dispatch = useDispatch()
 
     const path = usePathname()
     if (path.startsWith('/dashboard')) {
         return <></>
+    }
+
+    const handleLogout = async () => {
+        dispatch(logOut())
+            .then(res => {
+                if (logOut.fulfilled.match(res)) {
+                    toast.success("Sign out successful!", { position: "top-right" })
+                }
+            })
     }
     return (
         <header className='header py-4 border-b border-[var(--border-color)]'>
@@ -68,7 +80,7 @@ const Header = () => {
                                         </Link>
                                     </div>
                                     <div className="btn-container px-2">
-                                        <button className="btn-outline w-full mt-2">
+                                        <button className="btn-outline w-full mt-2" onClick={() => handleLogout()}>
                                             Sign Out
                                         </button>
                                     </div>

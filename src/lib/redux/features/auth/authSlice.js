@@ -1,6 +1,6 @@
 import { auth } from "@/lib/firebase/firebase.config";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 
 const googleProvider = new GoogleAuthProvider()
 
@@ -13,8 +13,8 @@ export const signUp = createAsyncThunk(
             return {
                 user_email: user.email,
                 user_id: user.uid,
-                user_name: "",
-                user_img: ""
+                user_name: null,
+                user_img: null
             };
         } catch (error) {
             return rejectWithValue(error?.message || "Sign-up failed");
@@ -32,8 +32,8 @@ export const signIn = createAsyncThunk(
             return {
                 user_email: user.email,
                 user_id: user.uid,
-                user_name: "",
-                user_img: ""
+                user_name: user?.displayName,
+                user_img: user?.photoURL
             };
         } catch (error) {
             return rejectWithValue(error?.message || "Sign-in failed");
@@ -59,6 +59,18 @@ export const googleSignIn = createAsyncThunk(
     }
 )
 
+export const logOut = createAsyncThunk(
+    "auth/logOut",
+    async (n, { rejectWithValue }) => {
+        try {
+            const userCredential = await signOut(auth)
+            return null;
+        } catch (error) {
+            return rejectWithValue(error?.message || "Google Sign-in failed");
+        }
+    }
+)
+
 const initialState = {
     user: null,
     loading: false,
@@ -72,10 +84,12 @@ export const authSlice = createSlice({
         setUser: (state, action) => {
             state.user = action.payload
             state.loading = false;
+            state.error = null
         },
         clearUser: (state) => {
             state.user = null;
             state.loading = false;
+            state.error = null
         },
         setLoading: (state, action) => {
             state.loading = action.payload;
@@ -116,6 +130,18 @@ export const authSlice = createSlice({
                 state.error = action.payload
             })
             .addCase(googleSignIn.fulfilled, (state, action) => {
+                state.loading = false
+                state.user = action.payload
+            })
+            .addCase(logOut.pending, (state) => {
+                state.loading = true
+                state.error = null
+            })
+            .addCase(logOut.rejected, (state, action) => {
+                state.loading = false
+                state.error = action.payload
+            })
+            .addCase(logOut.fulfilled, (state, action) => {
                 state.loading = false
                 state.user = action.payload
             })

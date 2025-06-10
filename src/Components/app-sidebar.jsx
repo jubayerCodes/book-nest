@@ -19,7 +19,6 @@ import {
   IconUsers,
 } from "@tabler/icons-react"
 
-import { NavDocuments } from "@/Components/nav-documents"
 import { NavMain } from "@/Components/nav-main"
 import { NavSecondary } from "@/Components/nav-secondary"
 import { NavUser } from "@/Components/nav-user"
@@ -34,13 +33,9 @@ import {
 } from "@/Components/ui/sidebar"
 import Link from "next/link"
 import logo from "@/assets/images/booknest-logo.png"
+import { useSelector } from "react-redux"
 
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
     {
       title: "Dashboard",
@@ -155,6 +150,9 @@ const data = {
 export function AppSidebar({
   ...props
 }) {
+
+  const { user } = useSelector(state => state.auth)
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -170,10 +168,9 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>
   );
