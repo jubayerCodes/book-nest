@@ -1,0 +1,25 @@
+input {
+    font-family: var(--font-secondary);
+}
+
+.header .header-actions a,
+.header .header-actions button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    gap: 2px;
+    transition: 0.3s ease all;
+}
+
+.header .header-actions a:hover,
+.header .header-actions button:hover {
+    color: var(--secondary-color);
+}
+
+.header .header-actions a .icon,
+.header .header-actions button .icon {
+    font-size: 20px;
+}

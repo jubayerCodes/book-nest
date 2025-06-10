@@ -1,0 +1,14 @@
+.breadcrumb-container {
+    display: flex;
+    gap: 4px;
+    font-size: 14px;
+}
+
+.breadcrumb-container a {
+    text-transform: capitalize;
+    text-decoration: underline;
+}
+
+.breadcrumb-container a:hover {
+    color: var(--secondary-color);
+}
