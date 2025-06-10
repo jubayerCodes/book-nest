@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { AppSidebar } from "@/Components/app-sidebar"
 import { SiteHeader } from "@/Components/site-header"
@@ -5,8 +6,18 @@ import {
     SidebarInset,
     SidebarProvider,
 } from "@/Components/ui/sidebar"
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 const DashboardLayout = ({ children }) => {
+
+    const { user, loading } = useSelector(state => state.auth)
+    const router = useRouter()
+
+    if (!user && !loading) {
+        return router.push("/login")
+    }
+
     return (
         <>
             <SidebarProvider
