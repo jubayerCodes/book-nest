@@ -1,20 +1,33 @@
 import { auth } from "@/lib/firebase/firebase.config";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import authApi from "../../api/authApi";
 
 const googleProvider = new GoogleAuthProvider()
 
 export const signUp = createAsyncThunk(
     "auth/signUp",
-    async ({ email, password }, { rejectWithValue }) => {
+    async ({ email, password }, { rejectWithValue, dispatch }) => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password)
             const user = userCredential.user;
+
+            const result = await dispatch(authApi.endpoints.getToken.initiate({
+                user_id: user.uid,
+                user_email: user.email,
+            }))
+
+            if (!result?.data?.success) {
+                throw new Error('Failed to get JWT token');
+            }
+
+            sessionStorage.setItem("token", result?.data?.token)
+
             return {
                 user_email: user.email,
                 user_id: user.uid,
                 user_name: null,
-                user_img: null
+                user_img: null,
             };
         } catch (error) {
             return rejectWithValue(error?.message || "Sign-up failed");
@@ -25,10 +38,22 @@ export const signUp = createAsyncThunk(
 
 export const signIn = createAsyncThunk(
     "auth/signIn",
-    async ({ email, password }, { rejectWithValue }) => {
+    async ({ email, password }, { rejectWithValue, dispatch }) => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password)
             const user = userCredential.user
+
+            const result = await dispatch(authApi.endpoints.getToken.initiate({
+                user_id: user.uid,
+                user_email: user.email,
+            }))
+
+            if (!result?.data?.success) {
+                throw new Error('Failed to get JWT token');
+            }
+
+            sessionStorage.setItem("token", result?.data?.token)
+
             return {
                 user_email: user.email,
                 user_id: user.uid,
@@ -43,10 +68,22 @@ export const signIn = createAsyncThunk(
 
 export const googleSignIn = createAsyncThunk(
     "auth/googleSignIn",
-    async (n, { rejectWithValue }) => {
+    async (n, { rejectWithValue, dispatch }) => {
         try {
             const userCredential = await signInWithPopup(auth, googleProvider)
             const user = userCredential.user
+
+            const result = await dispatch(authApi.endpoints.getToken.initiate({
+                user_id: user.uid,
+                user_email: user.email,
+            }))
+
+            if (!result?.data?.success) {
+                throw new Error('Failed to get JWT token');
+            }
+
+            sessionStorage.setItem("token", result?.data?.token)
+
             return {
                 user_email: user?.email,
                 user_id: user?.uid,
@@ -64,6 +101,9 @@ export const logOut = createAsyncThunk(
     async (n, { rejectWithValue }) => {
         try {
             const userCredential = await signOut(auth)
+
+            sessionStorage.removeItem("token")
+
             return null;
         } catch (error) {
             return rejectWithValue(error?.message || "Google Sign-in failed");
