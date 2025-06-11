@@ -6,9 +6,11 @@ export const POST = async (req) => {
 
     const user = {
         user_id: body?.user_id,
-        user_email: body?.user_email
+        user_email: body?.user_email,
     }
     const token = await signToken({ ...user });
+
+    console.log(token);
 
     return NextResponse.json({ token, success: true })
 }

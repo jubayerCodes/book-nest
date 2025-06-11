@@ -13,11 +13,13 @@ export async function middleware(req) {
 
     const decoded = await verifyToken(token);
 
+
     if (!decoded) {
         return NextResponse.json({ message: "Invalid or expired token" }, { status: 401 });
     }
 
     const requestHeaders = new Headers(req.headers);
+    requestHeaders.set("x-user-email", decoded.user_email); // ✅ Fix here
     requestHeaders.set("x-user-id", decoded.user_id);
 
     return NextResponse.next({
@@ -27,9 +29,9 @@ export async function middleware(req) {
     });
 }
 
-
 export const config = {
     matcher: [
         "/api/protected/:path*",
+        "/api/admin/:path*",
     ],
 };

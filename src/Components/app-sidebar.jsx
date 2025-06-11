@@ -38,29 +38,30 @@ import Link from "next/link"
 import logo from "@/assets/images/booknest-logo.png"
 import { useSelector } from "react-redux"
 
+export const navMainData = [
+  {
+    title: "Dashboard",
+    url: "/dashboard",
+    icon: IconDashboard,
+  },
+  {
+    title: "Manage Users",
+    url: "/dashboard/users",
+    icon: IconUsers,
+  },
+  {
+    title: "Manage Books",
+    url: "#",
+    icon: IconBook,
+  },
+  {
+    title: "Manage Categories",
+    url: "#",
+    icon: IconCategory,
+  }
+]
+
 const data = {
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "/dashboard",
-      icon: IconDashboard,
-    },
-    {
-      title: "Manage Books",
-      url: "#",
-      icon: IconBook,
-    },
-    {
-      title: "Manage Categories",
-      url: "#",
-      icon: IconCategory,
-    },
-    {
-      title: "Manage Users",
-      url: "/dashboard/users",
-      icon: IconUsers,
-    }
-  ],
   navClouds: [
     {
       title: "Capture",
@@ -165,7 +166,7 @@ export function AppSidebar({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={navMainData} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} />

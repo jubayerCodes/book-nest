@@ -22,9 +22,20 @@ export const usersApi = createApi({
                     'Authorization': `Bearer ${localStorage.getItem("token")}`,
                 }
             })
+        }),
+        getUsers: builder.query({
+            query: (params = { page: 1, limit: 10 }) => {
+                const { page, limit } = params;
+                return {
+                    url: `/admin/users?page=${page}&limit=${limit}`,
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                    }
+                }
+            }
         })
     })
 })
 
-export const { usePostUserMutation, useGetUserQuery } = usersApi
+export const { usePostUserMutation, useGetUserQuery, useGetUsersQuery } = usersApi
 export default usersApi

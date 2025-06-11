@@ -28,7 +28,6 @@ const Login = () => {
     const dispatch = useDispatch()
     const router = useRouter()
 
-    const [postUser] = usePostUserMutation();
 
     const handleLogin = async (data) => {
         const { email, password } = data;

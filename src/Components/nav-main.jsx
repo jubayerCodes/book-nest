@@ -24,9 +24,9 @@ export function NavMain({
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title} >
-              <SidebarMenuButton tooltip={item.title} className={"cursor-pointer active:bg-black"} isActive={pathName.startsWith(item.url)}>
+              <SidebarMenuButton tooltip={item.title} className={"cursor-pointer active:bg-black"} isActive={pathName == item.url}>
                 {item.icon && <item.icon />}
-                <Link href={item.url} className="w-full">
+                <Link href={item.url} className="w-full" style={{ fontFamily: "var(--font-secondary)" }}>
                   {item.title}</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

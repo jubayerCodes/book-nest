@@ -7,6 +7,7 @@ export const GET = async (req, { params }) => {
 
     const { email } = await params
     const user = await UserModel.findOne({ user_email: email })
+
     if (!user) {
         return NextResponse.json({ message: 'User not found', exist: false })
     }

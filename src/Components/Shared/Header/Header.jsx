@@ -24,7 +24,7 @@ const Header = () => {
         dispatch(logOut())
             .then(res => {
                 if (logOut.fulfilled.match(res)) {
-                    toast.success("Sign out successful!", { position: "top-right" })
+                    toast.success("Sign out successful!", { position: "top-center" })
                 }
             })
     }

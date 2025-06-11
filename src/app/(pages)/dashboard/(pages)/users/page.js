@@ -1,10 +1,11 @@
+import ManageUsers from '@/Pages/DashboardPages/ManageUsers/ManageUsers';
 import React from 'react';
 
 const ManageUsersPage = () => {
     return (
-        <div>
-            users
-        </div>
+        <>
+            <ManageUsers />
+        </>
     );
 };
 

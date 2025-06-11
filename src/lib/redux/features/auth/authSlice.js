@@ -2,6 +2,7 @@ import { auth } from "@/lib/firebase/firebase.config";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import authApi from "../../api/authApi";
+import usersApi from "../../api/usersApi";
 
 const googleProvider = new GoogleAuthProvider()
 
@@ -59,7 +60,7 @@ export const signIn = createAsyncThunk(
                 user_id: user.uid,
                 user_name: user?.displayName,
                 user_img: user?.photoURL
-            };
+            }
         } catch (error) {
             return rejectWithValue(error?.message || "Sign-in failed");
         }
@@ -73,23 +74,23 @@ export const googleSignIn = createAsyncThunk(
             const userCredential = await signInWithPopup(auth, googleProvider)
             const user = userCredential.user
 
-            const result = await dispatch(authApi.endpoints.getToken.initiate({
-                user_id: user.uid,
-                user_email: user.email,
-            }))
+                const result = await dispatch(authApi.endpoints.getToken.initiate({
+                    user_id: user.uid,
+                    user_email: user.email,
+                }))
 
-            if (!result?.data?.success) {
-                throw new Error('Failed to get JWT token');
-            }
+                if (!result?.data?.success) {
+                    throw new Error('Failed to get JWT token');
+                }
 
-            localStorage.setItem("token", result?.data?.token)
+                localStorage.setItem("token", result?.data?.token)
 
-            return {
-                user_email: user?.email,
-                user_id: user?.uid,
-                user_name: user?.displayName,
-                user_img: user?.photoURL
-            };
+                return {
+                    user_email: user.email,
+                    user_id: user.uid,
+                    user_name: user?.displayName,
+                    user_img: user?.photoURL
+                };
         } catch (error) {
             console.log(error);
             return rejectWithValue(error?.message || "Google Sign-in failed");
