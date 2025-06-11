@@ -7,13 +7,24 @@ export const usersApi = createApi({
     endpoints: (builder) => ({
         postUser: builder.mutation({
             query: (user) => ({
-                url: '/users',
+                url: '/protected/users',
                 method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+                },
                 body: user,
+            })
+        }),
+        getUser: builder.query({
+            query: (email) => ({
+                url: `/protected/users/${email}`,
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+                }
             })
         })
     })
 })
 
-export const { usePostUserMutation } = usersApi
+export const { usePostUserMutation, useGetUserQuery } = usersApi
 export default usersApi

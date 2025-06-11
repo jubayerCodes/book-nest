@@ -1,7 +1,7 @@
 "use client"
 
 import { usePostUserMutation } from '@/lib/redux/api/usersApi';
-import { googleSignIn } from '@/lib/redux/features/auth/authSlice';
+import { googleSignIn, setRole, setUser } from '@/lib/redux/features/auth/authSlice';
 import React from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
@@ -23,18 +23,21 @@ const SocialLogin = () => {
                     user_email,
                     user_id,
                     user_name,
-                    user_img
+                    user_img,
+                    user_role: "user"
                 })
 
-                if (res.data.success) {
-                    return {
-                        user_email,
-                        user_id,
-                        user_name,
-                        user_img
+                if (res.data.success || res.data.exist) {
+                    const user = {
+                        user_email: res?.data?.user?.user_email,
+                        user_id: res?.data?.user?.user_id,
+                        user_name: res?.data?.user?.user_name,
+                        user_img: res?.data?.user?.user_img,
+                        user_role: res?.data?.user?.user_role
                     }
+                    return user
                 }
-                else if (!res.data.exist) {
+                else {
                     throw new Error("Database insertion failed");
                 }
             } else {

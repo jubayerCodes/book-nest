@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import './Register.css';
 import Link from 'next/link';
-import { signUp } from '@/lib/redux/features/auth/authSlice';
+import { setRole, setUser, signUp } from '@/lib/redux/features/auth/authSlice';
 import { usePostUserMutation } from '@/lib/redux/api/usersApi';
 import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,17 +47,20 @@ const Register = () => {
                     user_email,
                     user_id,
                     user_name,
-                    user_img
+                    user_img,
+                    user_role: 'user'
                 })
 
                 if (res.data.success) {
                     reset()
-                    return {
-                        user_email,
-                        user_id,
-                        user_name,
-                        user_img
+                    const user = {
+                        user_email: res?.data?.user?.user_email,
+                        user_id: res?.data?.user?.user_id,
+                        user_name: res?.data?.user?.user_name,
+                        user_img: res?.data?.user?.user_img,
+                        user_role: res?.data?.user?.user_role
                     }
+                    return user
                 }
                 else {
                     throw new Error("Database insertion failed");

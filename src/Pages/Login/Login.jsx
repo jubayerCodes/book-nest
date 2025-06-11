@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
 import Separator from '@/Components/Shared/Separator/Separator';
 import SocialLogin from '@/Components/Shared/SocialLogin/SocialLogin';
+import { usePostUserMutation } from '@/lib/redux/api/usersApi';
 
 
 const Login = () => {
@@ -27,6 +28,8 @@ const Login = () => {
     const dispatch = useDispatch()
     const router = useRouter()
 
+    const [postUser] = usePostUserMutation();
+
     const handleLogin = async (data) => {
         const { email, password } = data;
 
@@ -34,9 +37,15 @@ const Login = () => {
             const resultAction = await dispatch(signIn({ email, password }));
 
             if (signIn.fulfilled.match(resultAction)) {
-                const user = resultAction.payload;
+                const { user_email, user_id, user_name, user_img } = resultAction.payload;
+
+
+                const existing = { user_email, user_id, user_name, user_img }
+
                 reset()
                 router.push("/")
+
+                return existing
             } else {
                 console.log("Login failed:", resultAction);
                 throw new Error(resultAction.payload == "Firebase: Error (auth/invalid-credential)." ? "Invalid credentials" : "Something went wrong")

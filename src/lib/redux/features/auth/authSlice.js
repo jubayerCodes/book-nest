@@ -27,7 +27,7 @@ export const signUp = createAsyncThunk(
                 user_email: user.email,
                 user_id: user.uid,
                 user_name: null,
-                user_img: null,
+                user_img: null
             };
         } catch (error) {
             return rejectWithValue(error?.message || "Sign-up failed");
@@ -78,8 +78,6 @@ export const googleSignIn = createAsyncThunk(
                 user_email: user.email,
             }))
 
-            console.log(result);
-
             if (!result?.data?.success) {
                 throw new Error('Failed to get JWT token');
             }
@@ -117,7 +115,8 @@ export const logOut = createAsyncThunk(
 const initialState = {
     user: null,
     loading: true,
-    error: null
+    error: null,
+    role: null
 }
 
 export const authSlice = createSlice({
@@ -136,6 +135,9 @@ export const authSlice = createSlice({
         },
         setLoading: (state, action) => {
             state.loading = action.payload;
+        },
+        setRole: (state, action) => {
+            state.role = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -191,6 +193,6 @@ export const authSlice = createSlice({
     }
 })
 
-export const { setUser, clearUser, setLoading } = authSlice.actions
+export const { setUser, clearUser, setLoading, setRole } = authSlice.actions
 
 export default authSlice.reducer

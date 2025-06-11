@@ -9,12 +9,12 @@ export const GET = async () => {
 }
 
 export const POST = async (request) => {
+
     try {
         await connectDB()
         const body = await request.json();
 
-        const { user_name, user_img, user_email, user_id } = body;
-        console.log({ user_name, user_img, user_email, user_id });
+        const { user_name, user_img, user_email, user_id, user_role } = body;
 
         if (!user_email || !user_id) {
             return NextResponse.json({ error: 'Email and UID are required' }, { status: 400 });
@@ -28,7 +28,7 @@ export const POST = async (request) => {
         }
 
 
-        const newUser = await UserModel.create({ user_name, user_img, user_email, user_id });
+        const newUser = await UserModel.create({ user_name, user_img, user_email, user_id, user_role });
 
         return NextResponse.json({ success: true, user: newUser }, { status: 201 });
     } catch (error) {
