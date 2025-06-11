@@ -4,6 +4,7 @@ import * as React from "react"
 import {
   IconBook,
   IconCamera,
+  IconCategory,
   IconChartBar,
   IconDashboard,
   IconDatabase,
@@ -17,6 +18,7 @@ import {
   IconReport,
   IconSearch,
   IconSettings,
+  IconUser,
   IconUsers,
 } from "@tabler/icons-react"
 
@@ -51,18 +53,13 @@ const data = {
     {
       title: "Manage Categories",
       url: "#",
-      icon: IconChartBar,
+      icon: IconCategory,
     },
     {
-      title: "Projects",
-      url: "#",
-      icon: IconFolder,
-    },
-    {
-      title: "Team",
-      url: "#",
+      title: "Manage Users",
+      url: "/dashboard/users",
       icon: IconUsers,
-    },
+    }
   ],
   navClouds: [
     {

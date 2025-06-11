@@ -26,7 +26,7 @@ export function NavMain({
             <SidebarMenuItem key={item.title} >
               <SidebarMenuButton tooltip={item.title} className={"cursor-pointer active:bg-black"} isActive={pathName.startsWith(item.url)}>
                 {item.icon && <item.icon />}
-                <Link href={item.url}>
+                <Link href={item.url} className="w-full">
                   {item.title}</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

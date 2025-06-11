@@ -10,7 +10,7 @@ export const usersApi = createApi({
                 url: '/protected/users',
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
                 },
                 body: user,
             })
@@ -19,7 +19,7 @@ export const usersApi = createApi({
             query: (email) => ({
                 url: `/protected/users/${email}`,
                 headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
                 }
             })
         })

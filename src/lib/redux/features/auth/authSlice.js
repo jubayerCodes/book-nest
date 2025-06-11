@@ -21,7 +21,7 @@ export const signUp = createAsyncThunk(
                 throw new Error('Failed to get JWT token');
             }
 
-            sessionStorage.setItem("token", result?.data?.token)
+            localStorage.setItem("token", result?.data?.token)
 
             return {
                 user_email: user.email,
@@ -52,7 +52,7 @@ export const signIn = createAsyncThunk(
                 throw new Error('Failed to get JWT token');
             }
 
-            sessionStorage.setItem("token", result?.data?.token)
+            localStorage.setItem("token", result?.data?.token)
 
             return {
                 user_email: user.email,
@@ -82,7 +82,7 @@ export const googleSignIn = createAsyncThunk(
                 throw new Error('Failed to get JWT token');
             }
 
-            sessionStorage.setItem("token", result?.data?.token)
+            localStorage.setItem("token", result?.data?.token)
 
             return {
                 user_email: user?.email,
@@ -103,7 +103,7 @@ export const logOut = createAsyncThunk(
         try {
             const userCredential = await signOut(auth)
 
-            sessionStorage.removeItem("token")
+            localStorage.removeItem("token")
 
             return null;
         } catch (error) {
