@@ -9,10 +9,14 @@ export const observeAuthState = (store) => {
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            console.log(user);
 
             store.dispatch(usersApi.endpoints.getUser.initiate(user?.email))
                 .then(res => {
+                    if (!res.isSuccess) {
+                        store.dispatch(clearUser());
+                        store.dispatch(setRole(null));
+                        return {}
+                    }
                     if (res.data.exist) {
 
                         const newUser = {
@@ -23,15 +27,13 @@ export const observeAuthState = (store) => {
                             user_role: res?.data?.user?.user_role
                         }
 
-                        console.log(newUser);
-
                         store.dispatch(setUser(newUser))
                         store.dispatch(setRole(res?.data?.user?.user_role))
                     }
                 })
         } else {
             store.dispatch(clearUser());
-            store.dispatch(setRole(null))
+            store.dispatch(setRole(null));
         }
     })
 }

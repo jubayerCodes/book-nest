@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import { verifyToken } from "./lib/jwt/jwt";
 
-export function middleware(req) {
+export async function middleware(req) {
     const authHeader = req.headers.get("Authorization");
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -11,7 +11,7 @@ export function middleware(req) {
 
     const token = authHeader.split(" ")[1];
 
-    const decoded = verifyToken(token);
+    const decoded = await verifyToken(token);
 
     if (!decoded) {
         return NextResponse.json({ message: "Invalid or expired token" }, { status: 401 });
