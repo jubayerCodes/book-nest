@@ -48,8 +48,6 @@ export const signIn = createAsyncThunk(
                 user_email: user.email,
             }))
 
-            console.log(result);
-
             if (!result?.data?.success) {
                 throw new Error('Failed to get JWT token');
             }
@@ -80,6 +78,8 @@ export const googleSignIn = createAsyncThunk(
                 user_email: user.email,
             }))
 
+            console.log(result);
+
             if (!result?.data?.success) {
                 throw new Error('Failed to get JWT token');
             }
@@ -93,6 +93,7 @@ export const googleSignIn = createAsyncThunk(
                 user_img: user?.photoURL
             };
         } catch (error) {
+            console.log(error);
             return rejectWithValue(error?.message || "Google Sign-in failed");
         }
     }
