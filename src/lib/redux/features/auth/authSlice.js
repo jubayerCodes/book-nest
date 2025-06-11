@@ -48,6 +48,8 @@ export const signIn = createAsyncThunk(
                 user_email: user.email,
             }))
 
+            console.log(result);
+
             if (!result?.data?.success) {
                 throw new Error('Failed to get JWT token');
             }
