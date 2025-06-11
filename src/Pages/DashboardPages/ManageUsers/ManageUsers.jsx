@@ -26,27 +26,26 @@ const ManageUsers = () => {
 
     const columns = [
         {
-            accessorKey: "",
+            accessorKey: "user_img",
             header: "",
         },
         {
-            accessorKey: "name",
+            accessorKey: "user_name",
             header: "Name",
         },
         {
-            accessorKey: 'email',
+            accessorKey: 'user_email',
             header: 'Email'
         },
         {
-            accessorKey: 'uid',
+            accessorKey: 'user_id',
             header: 'User ID'
         },
         {
-            accessorKey: 'role',
+            accessorKey: 'user_role',
             header: 'Role'
         },
         {
-            accessorKey: 'actions',
             header: 'Actions'
         }
     ]
@@ -67,14 +66,18 @@ const ManageUsers = () => {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {tableData?.length ? (
-                            tableData?.map((row) => (
+                        {users?.length ? (
+                            users?.map((row) => (
                                 <TableRow
-                                    key={row?.id}
+                                    key={row?._id}
                                 >
-                                    <TableCell>
-                                        {row.id}
-                                    </TableCell>
+                                    {
+                                        columns.map((column, idx) => (
+                                            <TableCell key={idx}>
+                                                {row[column?.accessorKey]}
+                                            </TableCell>
+                                        ))
+                                    }
                                 </TableRow>
                             ))
                         ) : (
