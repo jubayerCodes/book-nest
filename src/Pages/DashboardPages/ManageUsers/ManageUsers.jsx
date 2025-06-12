@@ -21,6 +21,7 @@ import {
 import { Button } from '@/Components/ui/button';
 import { IconDotsVertical } from '@tabler/icons-react';
 import { toast } from 'sonner';
+import dynamic from 'next/dynamic';
 
 const ManageUsers = () => {
 
@@ -150,4 +151,4 @@ const ManageUsers = () => {
     );
 };
 
-export default ManageUsers;
+export default dynamic(() => Promise.resolve(ManageUsers), { ssr: false });

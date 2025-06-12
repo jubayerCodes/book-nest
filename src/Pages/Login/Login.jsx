@@ -9,7 +9,6 @@ import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
 import Separator from '@/Components/Shared/Separator/Separator';
 import SocialLogin from '@/Components/Shared/SocialLogin/SocialLogin';
-import { usePostUserMutation } from '@/lib/redux/api/usersApi';
 
 
 const Login = () => {

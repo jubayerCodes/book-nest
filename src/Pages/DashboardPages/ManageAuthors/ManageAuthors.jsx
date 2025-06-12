@@ -20,6 +20,7 @@ import {
 } from "@/Components/ui/dropdown-menu"
 import { Button } from '@/Components/ui/button';
 import { IconDotsVertical } from '@tabler/icons-react';
+import dynamic from 'next/dynamic';
 
 const ManageAuthors = () => {
 
@@ -135,4 +136,4 @@ const ManageAuthors = () => {
     );
 };
 
-export default ManageAuthors;
+export default dynamic(() => Promise.resolve(ManageAuthors), { ssr: false });
