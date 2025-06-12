@@ -3,29 +3,15 @@
 import * as React from "react"
 import {
   IconBook,
-  IconCamera,
+  IconBook2,
   IconCategory,
-  IconChartBar,
   IconDashboard,
-  IconDatabase,
-  IconFileAi,
-  IconFileDescription,
-  IconFileWord,
-  IconFolder,
-  IconHelp,
-  IconInnerShadowTop,
-  IconListDetails,
-  IconReport,
-  IconSearch,
-  IconSettings,
   IconShield,
-  IconUser,
   IconUserPentagon,
   IconUsers,
 } from "@tabler/icons-react"
 
 import { NavMain } from "@/Components/nav-main"
-import { NavSecondary } from "@/Components/nav-secondary"
 import { NavUser } from "@/Components/nav-user"
 import {
   Sidebar,
@@ -39,131 +25,84 @@ import {
 import Link from "next/link"
 import logo from "@/assets/images/booknest-logo.png"
 import { useSelector } from "react-redux"
-import { NavDocuments } from "./nav-documents"
 
-export const adminNavMain = [
-  {
-    title: "Dashboard",
-    url: "/dashboard",
-    icon: IconDashboard,
-  },
-  {
-    title: "Manage Admins",
-    url: "/dashboard/admin/admins",
-    icon: IconShield,
-  },
-  {
-    title: "Manage Authors",
-    url: "/dashboard/admin/authors",
-    icon: IconUserPentagon,
-  },
-  {
-    title: "Manage Users",
-    url: "/dashboard/admin/users",
-    icon: IconUsers,
-  },
-  {
-    title: "Manage Books",
-    url: "#",
-    icon: IconBook,
-  },
-  {
-    title: "Manage Categories",
-    url: "#",
-    icon: IconCategory,
-  }
-]
 
-const data = {
-  navClouds: [
+const navMenu = {
+  admin: [
     {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: IconDashboard,
     },
     {
-      title: "Proposal",
-      icon: IconFileDescription,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
+      title: "Manage Admins",
+      url: "/dashboard/admin/admins",
+      icon: IconShield,
     },
     {
-      title: "Prompts",
-      icon: IconFileAi,
+      title: "Manage Authors",
+      url: "/dashboard/admin/authors",
+      icon: IconUserPentagon,
+    },
+    {
+      title: "Manage Users",
+      url: "/dashboard/admin/users",
+      icon: IconUsers,
+    },
+    {
+      title: "Manage Books",
       url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
+      icon: IconBook,
+    },
+    {
+      title: "Manage Categories",
+      url: "/dashboard/admin/categories",
+      icon: IconCategory,
     },
   ],
-  navSecondary: [
+  author: [
     {
-      title: "Settings",
-      url: "#",
-      icon: IconSettings,
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: IconDashboard,
     },
     {
-      title: "Get Help",
-      url: "#",
-      icon: IconHelp,
+      title: "My Books",
+      url: "/dashboard/author/books",
+      icon: IconBook,
     },
     {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
-    },
+      title: "Drafts",
+      url: "/dashboard/author/drafts",
+      icon: IconBook2,
+    }
   ],
-  documents: [
+  user: [
     {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: IconDashboard,
     },
     {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
+      title: "Purchase History",
+      url: "/dashboard/user/purchase-history",
+      icon: IconDashboard,
     },
     {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
-    },
-  ],
+      title: "Wishlist",
+      url: "/dashboard/user/wishlist",
+      icon: IconDashboard,
+    }
+  ]
 }
 
 export function AppSidebar({
   ...props
 }) {
 
-  const { user } = useSelector(state => state.auth)
+  const { user, role } = useSelector(state => state.auth)
+
+
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
@@ -179,7 +118,7 @@ export function AppSidebar({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={adminNavMain} />
+        <NavMain items={navMenu[role]} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} />

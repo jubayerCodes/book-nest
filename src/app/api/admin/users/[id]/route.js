@@ -6,12 +6,8 @@ export const PATCH = async (req, { params }) => {
 
     const { id } = await params
 
-    console.log(id);
-
     const { user_role } = await req.json();
-
-    console.log(user_role);
-
+    
     await connectDB()
 
     const user = await UserModel.findByIdAndUpdate(

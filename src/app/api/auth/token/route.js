@@ -10,7 +10,5 @@ export const POST = async (req) => {
     }
     const token = await signToken({ ...user });
 
-    console.log(token);
-
     return NextResponse.json({ token, success: true })
 }

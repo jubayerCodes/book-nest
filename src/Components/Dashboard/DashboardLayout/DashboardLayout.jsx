@@ -31,7 +31,7 @@ const DashboardLayout = ({ children }) => {
                         "--header-height": "calc(var(--spacing) * 12)"
                     }
                 }>
-                <AppSidebar />
+                <AppSidebar variant='inset' />
                 <SidebarInset>
                     <SiteHeader />
                     {children}

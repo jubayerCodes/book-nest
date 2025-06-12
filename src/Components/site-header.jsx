@@ -4,12 +4,75 @@ import { Separator } from "@/Components/ui/separator"
 import { SidebarTrigger } from "@/Components/ui/sidebar"
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { adminNavMain } from "./app-sidebar";
+import { useSelector } from "react-redux";
+
+const navMenu = {
+  admin: [
+    {
+      title: "Dashboard",
+      url: "/dashboard",
+
+    },
+    {
+      title: "Manage Admins",
+      url: "/dashboard/admin/admins"
+    },
+    {
+      title: "Manage Authors",
+      url: "/dashboard/admin/authors"
+    },
+    {
+      title: "Manage Users",
+      url: "/dashboard/admin/users"
+    },
+    {
+      title: "Manage Books",
+      url: "#"
+    },
+    {
+      title: "Manage Categories",
+      url: "/dashboard/admin/categories"
+    },
+  ],
+  author: [
+    {
+      title: "Dashboard",
+      url: "/dashboard"
+    },
+    {
+      title: "My Books",
+      url: "/dashboard/author/books"
+    },
+    {
+      title: "Drafts",
+      url: "/dashboard/author/drafts"
+    },
+    {
+      title: "Add Book",
+      url: "/dashboard/author/add-book"
+    }
+  ],
+  user: [
+    {
+      title: "Dashboard",
+      url: "/dashboard"
+    },
+    {
+      title: "Purchase History",
+      url: "/dashboard/user/purchase-history"
+    },
+    {
+      title: "Wishlist",
+      url: "/dashboard/user/wishlist"
+    }
+  ]
+}
 
 export function SiteHeader() {
+  const { role } = useSelector(state => state.auth)
 
   const pathName = usePathname()
-  const title = adminNavMain.find(nav => nav.url === pathName)?.title
+  const title = navMenu[role].find(nav => nav.url === pathName)?.title
 
   return (
     <header

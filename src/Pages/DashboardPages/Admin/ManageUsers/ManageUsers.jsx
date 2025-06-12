@@ -67,7 +67,6 @@ const ManageUsers = () => {
 
     const handleUpdateRole = async (id, role) => {
 
-        console.log(id, role);
         try {
             const res = await updateRole({ id, user_role: role }).unwrap();
             if (res?.success) {

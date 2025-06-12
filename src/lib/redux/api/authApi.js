@@ -1,5 +1,3 @@
-// In your usersApi or create a new api slice for auth token
-
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({

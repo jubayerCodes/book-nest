@@ -61,16 +61,14 @@ const ManageAdmins = () => {
             header: 'Role'
         },
         {
-            header: 'Actions',
-            align: "end"
+            header: 'Actions'
         }
     ]
-
 
     const handleUpdateRole = async (id, role) => {
         try {
             const res = await updateRole({ id, user_role: role }).unwrap();
-            console.log(res);
+
             if (res?.success) {
                 refetch()
                 toast.success("User updated successfully!", { position: "top-right" })

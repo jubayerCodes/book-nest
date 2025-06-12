@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
           <AuthProvider>
             <Header />
             {children}
-            <Toaster />
+            <Toaster position="top-right" />
           </AuthProvider>
         </ReduxProvider>
       </body>

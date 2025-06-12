@@ -4,8 +4,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-const AdminRoute = ({ children }) => {
-
+const AuthorRoute = ({ children }) => {
     const { role, loading } = useSelector(state => state.auth)
 
     const router = useRouter()
@@ -14,11 +13,11 @@ const AdminRoute = ({ children }) => {
         return <div>Loading...</div>
     }
 
-    if (role !== 'admin') {
+    if (role !== 'author') {
         return router.push("/")
     }
 
     return children;
 };
 
-export default AdminRoute;
+export default AuthorRoute;
