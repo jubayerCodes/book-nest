@@ -24,18 +24,28 @@ export const usersApi = createApi({
             })
         }),
         getUsers: builder.query({
-            query: (params = { page: 1, limit: 10 }) => {
+            query: (role = "user", params = { page: 1, limit: 10 }) => {
                 const { page, limit } = params;
                 return {
-                    url: `/admin/users?page=${page}&limit=${limit}`,
+                    url: `/admin/users?role=${role}&page=${page}&limit=${limit}`,
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem("token")}`,
                     }
                 }
             }
+        }),
+        updateUserRole: builder.mutation({
+            query: ({ id, user_role }) => ({
+                url: `/admin/users/${id}`,
+                method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                },
+                body: { user_role },
+            })
         })
     })
 })
 
-export const { usePostUserMutation, useGetUserQuery, useGetUsersQuery } = usersApi
+export const { usePostUserMutation, useGetUserQuery, useGetUsersQuery, useGetAuthorsQuery, useUpdateUserRoleMutation } = usersApi
 export default usersApi

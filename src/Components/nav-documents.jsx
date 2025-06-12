@@ -20,13 +20,13 @@ import {
 } from "@/Components/ui/sidebar"
 
 export function NavDocuments({
-  items
+  items, title
 }) {
   const { isMobile } = useSidebar()
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Documents</SidebarGroupLabel>
+      <SidebarGroupLabel>{title}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.name}>

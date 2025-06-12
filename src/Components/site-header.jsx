@@ -4,12 +4,12 @@ import { Separator } from "@/Components/ui/separator"
 import { SidebarTrigger } from "@/Components/ui/sidebar"
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { navMainData } from "./app-sidebar";
+import { adminNavMain } from "./app-sidebar";
 
 export function SiteHeader() {
 
   const pathName = usePathname()
-  const title = navMainData.find(nav => nav.url === pathName)?.title
+  const title = adminNavMain.find(nav => nav.url === pathName)?.title
 
   return (
     <header

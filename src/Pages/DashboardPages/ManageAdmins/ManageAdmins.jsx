@@ -1,5 +1,5 @@
 "use client"
-import { useGetUsersQuery, useUpdateUserRoleMutation } from '@/lib/redux/api/usersApi';
+import { useGetAuthorsQuery, useGetUsersQuery, useUpdateUserRoleMutation } from '@/lib/redux/api/usersApi';
 import React, { useEffect } from 'react';
 import userPhoto from "@/assets/images/default-user_1.png"
 
@@ -22,9 +22,10 @@ import { Button } from '@/Components/ui/button';
 import { IconDotsVertical } from '@tabler/icons-react';
 import { toast } from 'sonner';
 
-const ManageUsers = () => {
+const ManageAdmins = () => {
 
-    const { data, refetch } = useGetUsersQuery("user", {
+
+    const { data, refetch } = useGetUsersQuery("admin", {
         refetchOnMountOrArgChange: true
     })
     const [updateRole] = useUpdateUserRoleMutation()
@@ -64,11 +65,11 @@ const ManageUsers = () => {
         }
     ]
 
-    const handleUpdateRole = async (id, role) => {
 
-        console.log(id, role);
+    const handleUpdateRole = async (id, role) => {
         try {
             const res = await updateRole({ id, user_role: role }).unwrap();
+            console.log(res);
             if (res?.success) {
                 refetch()
                 toast.success("User updated successfully!", { position: "top-right" })
@@ -123,11 +124,8 @@ const ManageUsers = () => {
                                                 </DropdownMenuTrigger>
                                                 <DropdownMenuContent className="w-56" align="end">
                                                     <DropdownMenuGroup>
-                                                        <DropdownMenuItem onClick={() => handleUpdateRole(row._id, "admin")}>
-                                                            Make Admin
-                                                        </DropdownMenuItem>
-                                                        <DropdownMenuItem onClick={() => handleUpdateRole(row._id, "author")}>
-                                                            Make Author
+                                                        <DropdownMenuItem onClick={() => handleUpdateRole(row?._id, "user")}>
+                                                            Make User
                                                         </DropdownMenuItem>
                                                     </DropdownMenuGroup>
                                                 </DropdownMenuContent>
@@ -150,4 +148,4 @@ const ManageUsers = () => {
     );
 };
 
-export default ManageUsers;
+export default ManageAdmins;

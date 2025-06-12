@@ -18,7 +18,9 @@ import {
   IconReport,
   IconSearch,
   IconSettings,
+  IconShield,
   IconUser,
+  IconUserPentagon,
   IconUsers,
 } from "@tabler/icons-react"
 
@@ -37,16 +39,27 @@ import {
 import Link from "next/link"
 import logo from "@/assets/images/booknest-logo.png"
 import { useSelector } from "react-redux"
+import { NavDocuments } from "./nav-documents"
 
-export const navMainData = [
+export const adminNavMain = [
   {
     title: "Dashboard",
     url: "/dashboard",
     icon: IconDashboard,
   },
   {
+    title: "Manage Admins",
+    url: "/dashboard/admin/admins",
+    icon: IconShield,
+  },
+  {
+    title: "Manage Authors",
+    url: "/dashboard/admin/authors",
+    icon: IconUserPentagon,
+  },
+  {
     title: "Manage Users",
-    url: "/dashboard/users",
+    url: "/dashboard/admin/users",
     icon: IconUsers,
   },
   {
@@ -166,7 +179,7 @@ export function AppSidebar({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={navMainData} />
+        <NavMain items={adminNavMain} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} />
