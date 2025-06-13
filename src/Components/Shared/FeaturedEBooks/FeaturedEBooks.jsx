@@ -52,7 +52,7 @@ const FeaturedEBooks = () => {
                                 }}
                                 className="mySwiper featured-books-swiper"
                             >
-                                {Array.from({ length: 24 }).map((_, i) => (
+                                {Array.from({ length: 24 })?.map((_, i) => (
                                     <SwiperSlide key={i}>
                                         <BookItem />
                                     </SwiperSlide>

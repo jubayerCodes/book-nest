@@ -19,7 +19,7 @@ export function NavMain({
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
-          {items.map((item) => (
+          {items?.map((item) => (
             <SidebarMenuItem key={item.title} >
               <SidebarMenuButton tooltip={item.title} className={"cursor-pointer active:bg-black"} isActive={pathName == item.url}>
                 {item.icon && <item.icon />}
