@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./firebase.config"
-import { clearUser, setUser, setLoading, setRole } from "../redux/features/auth/authSlice"
+import { clearUser, setUser, setLoading } from "../redux/features/auth/authSlice"
 import usersApi from "../redux/api/usersApi";
 
 export const observeAuthState = (store) => {
@@ -14,7 +14,6 @@ export const observeAuthState = (store) => {
                 .then(res => {
                     if (!res.isSuccess) {
                         store.dispatch(clearUser());
-                        store.dispatch(setRole(null));
                         return {}
                     }
                     if (res.data.exist) {
@@ -28,12 +27,10 @@ export const observeAuthState = (store) => {
                         }
 
                         store.dispatch(setUser(newUser))
-                        store.dispatch(setRole(res?.data?.user?.user_role))
                     }
                 })
         } else {
             store.dispatch(clearUser());
-            store.dispatch(setRole(null));
         }
     })
 }

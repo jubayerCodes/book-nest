@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import './Register.css';
 import Link from 'next/link';
-import { setRole, setUser, signUp } from '@/lib/redux/features/auth/authSlice';
+import { signUp } from '@/lib/redux/features/auth/authSlice';
 import { usePostUserMutation } from '@/lib/redux/api/usersApi';
 import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
@@ -40,32 +40,7 @@ const Register = () => {
             const resultAction = await dispatch(signUp({ email, password }));
 
             // Check if signUp was successful
-            if (signUp.fulfilled.match(resultAction)) {
-                const { user_email, user_id, user_name, user_img } = resultAction.payload;
-
-                const res = await postUser({
-                    user_email,
-                    user_id,
-                    user_name,
-                    user_img,
-                    user_role: 'user'
-                })
-
-                if (res.data.success) {
-                    reset()
-                    const user = {
-                        user_email: res?.data?.user?.user_email,
-                        user_id: res?.data?.user?.user_id,
-                        user_name: res?.data?.user?.user_name,
-                        user_img: res?.data?.user?.user_img,
-                        user_role: res?.data?.user?.user_role
-                    }
-                    return user
-                }
-                else {
-                    throw new Error("Database insertion failed");
-                }
-            } else {
+            if (!signUp.fulfilled.match(resultAction)) {
                 throw new Error(resultAction.payload == "Firebase: Error (auth/email-already-in-use)." ? "Email already in use" : "Something went wrong");
             }
         }

@@ -72,7 +72,7 @@ export function SiteHeader() {
   const { role } = useSelector(state => state.auth)
 
   const pathName = usePathname()
-  const title = navMenu[role].find(nav => nav.url === pathName)?.title
+  const title = navMenu[role]?.find(nav => nav?.url === pathName)?.title
 
   return (
     <header

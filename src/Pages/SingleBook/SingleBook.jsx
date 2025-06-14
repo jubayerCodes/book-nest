@@ -38,9 +38,9 @@ const SingleBook = ({ params }) => {
                         <div className="book-info-container col-span-3">
                             <h3 className="book-title">Lecture Dakhil English 2nd Part - Lecture</h3>
                             <p className="book-category">
-                                <Link href="#" className="book-category-link">Category Name</Link>
+                                <Link href="#" className="book-category-link hover:underline">Category Name</Link>
                             </p>
-                            <p className="book-author">by <Link href="#">Author Name</Link></p>
+                            <p className="book-author">by <Link href="#" className=' hover:underline'>Author Name</Link></p>
                             <div className="summary">
                                 <h5 className='mb-2 text-[var(--heading-color)]'>Summary</h5>
                                 <p>

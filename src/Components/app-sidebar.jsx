@@ -100,8 +100,7 @@ export function AppSidebar({
   ...props
 }) {
 
-  const { user, role } = useSelector(state => state.auth)
-
+  const { user } = useSelector(state => state.auth)
 
 
   return (
@@ -118,7 +117,7 @@ export function AppSidebar({
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={navMenu[role]} />
+        <NavMain items={navMenu} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user} />

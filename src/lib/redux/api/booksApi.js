@@ -13,9 +13,17 @@ export const booksApi = createApi({
                 },
                 body: category,
             })
+        }),
+        getAdminCategories: builder.query({
+            query: () => ({
+                url: `/admin/categories`,
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
         })
     }),
 });
 
-export const { usePostCategoryMutation } = booksApi;
+export const { usePostCategoryMutation, useGetAdminCategoriesQuery } = booksApi;
 export default booksApi;

@@ -1,7 +1,7 @@
 "use client"
 
 import { usePostUserMutation } from '@/lib/redux/api/usersApi';
-import { googleSignIn, setRole, setUser } from '@/lib/redux/features/auth/authSlice';
+import { googleSignIn } from '@/lib/redux/features/auth/authSlice';
 import React from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
@@ -9,41 +9,12 @@ import { toast } from 'sonner';
 
 const SocialLogin = () => {
 
-    const [postUser] = usePostUserMutation();
 
     const dispatch = useDispatch()
 
     const handleGoogleLogin = async () => {
         const googleSignInPromise = async () => {
             const result = await dispatch(googleSignIn())
-
-            if (googleSignIn.fulfilled.match(result)) {
-                const { user_email, user_id, user_name, user_img } = result.payload;
-                const res = await postUser({
-                    user_email,
-                    user_id,
-                    user_name,
-                    user_img,
-                    user_role: "user"
-                })
-
-                if (res.data.success || res.data.exist) {
-                    const user = {
-                        user_email: res?.data?.user?.user_email,
-                        user_id: res?.data?.user?.user_id,
-                        user_name: res?.data?.user?.user_name,
-                        user_img: res?.data?.user?.user_img,
-                        user_role: res?.data?.user?.user_role
-                    }
-                    return user
-                }
-                else {
-                    throw new Error("Database insertion failed");
-                }
-            } else {
-                console.log(result);
-                throw new Error(result.payload == "Firebase: Error (auth/email-already-in-use)." ? "Email already in use" : "Something went wrong");
-            }
         }
 
         toast.promise(googleSignInPromise(), {
