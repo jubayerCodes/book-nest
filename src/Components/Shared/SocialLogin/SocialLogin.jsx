@@ -15,6 +15,10 @@ const SocialLogin = () => {
     const handleGoogleLogin = async () => {
         const googleSignInPromise = async () => {
             const result = await dispatch(googleSignIn())
+
+            if (googleSignIn.rejected) {
+                throw new Error("Something went wrong")
+            }
         }
 
         toast.promise(googleSignInPromise(), {

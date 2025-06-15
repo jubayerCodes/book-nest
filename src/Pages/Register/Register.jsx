@@ -25,8 +25,6 @@ const Register = () => {
     const { loading, error } = authState
     const dispatch = useDispatch()
 
-    const [postUser] = usePostUserMutation();
-
     const handleRegister = async (data) => {
         const { email, confirmEmail, password } = data;
 
