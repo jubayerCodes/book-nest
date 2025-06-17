@@ -47,5 +47,5 @@ export const usersApi = createApi({
     })
 })
 
-export const { usePostUserMutation, useGetUserQuery, useGetUsersQuery, useGetAuthorsQuery, useUpdateUserRoleMutation } = usersApi
+export const { usePostUserMutation, useGetUserQuery, useGetUsersQuery, useUpdateUserRoleMutation } = usersApi
 export default usersApi

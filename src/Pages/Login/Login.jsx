@@ -41,7 +41,7 @@ const Login = () => {
                 const existing = { user_email, user_id, user_name, user_img }
 
                 reset()
-                router.push("/")
+                router.push("/dashboard")
 
                 return existing
             } else {

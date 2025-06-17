@@ -21,8 +21,6 @@ export function NavMain({
 
   const menu = items[role]
 
-  console.log(menu, role);
-
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">

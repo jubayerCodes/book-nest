@@ -13,7 +13,7 @@ const Hero = () => {
 
     return (
         <>
-            <Swiper pagination={true} modules={[Pagination]} className="mySwiper hero-swiper">
+            <Swiper pagination={true} loop={true} modules={[Pagination]} className="mySwiper hero-swiper">
                 <SwiperSlide>
                     <img src={hero1.src} alt="" />
                 </SwiperSlide>

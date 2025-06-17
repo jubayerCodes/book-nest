@@ -6,7 +6,6 @@ import {
     Table,
     TableBody,
     TableCell,
-    TableFooter,
     TableHead,
     TableHeader,
     TableRow,
@@ -19,7 +18,7 @@ import {
     DropdownMenuTrigger,
 } from "@/Components/ui/dropdown-menu"
 import { Button } from '@/Components/ui/button';
-import { IconCheck, IconChecklist, IconChevronLeft, IconChevronRight, IconChevronsLeft, IconChevronsRight, IconCross, IconDotsVertical } from '@tabler/icons-react';
+import { IconDotsVertical } from '@tabler/icons-react';
 import { Input } from '@/Components/ui/input';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/Components/ui/dialog';
 import { Controller, useForm } from 'react-hook-form';
@@ -27,7 +26,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useGetAdminCategoriesQuery, usePostCategoryMutation } from '@/lib/redux/api/booksApi';
 import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
-import { Label } from '@/Components/ui/label';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 
 const ManageCategories = () => {
@@ -56,7 +54,7 @@ const ManageCategories = () => {
         {
             header: 'Actions',
             align: "end"
-        },
+        }
     ]
 
 

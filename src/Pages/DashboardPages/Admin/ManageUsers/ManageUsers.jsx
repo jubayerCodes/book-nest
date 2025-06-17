@@ -126,9 +126,6 @@ const ManageUsers = () => {
                                                         <DropdownMenuItem onClick={() => handleUpdateRole(row._id, "admin")}>
                                                             Make Admin
                                                         </DropdownMenuItem>
-                                                        <DropdownMenuItem onClick={() => handleUpdateRole(row._id, "author")}>
-                                                            Make Author
-                                                        </DropdownMenuItem>
                                                     </DropdownMenuGroup>
                                                 </DropdownMenuContent>
                                             </DropdownMenu>
